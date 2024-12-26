@@ -5,7 +5,7 @@ let songList;
 let currentFolder;
 
 const playlistFetch = async () => {
-    let list = await fetch("http://127.0.0.1:3000/Songs/");
+    let list = await fetch("/Songs/");
     let response = await list.text();
     let div = document.createElement("div");
     div.innerHTML = response;
@@ -16,7 +16,7 @@ const playlistFetch = async () => {
         if (e.href.includes("/Songs")) {
             let folder = e.href.split("/").slice(-2)[0];
             // LoadMediaMetadata
-            let data = await fetch(`http://127.0.0.1:3000/Songs/${folder}/info.json`);
+            let data = await fetch(`/Songs/${folder}/info.json`);
             let response = await data.json()
             let playListCard = `<div data-folder="${folder}" class="card">
                 <img src="${(`/Songs/${folder}/cover.jpg`) ? `/Songs/${folder}/cover.jpg` :
@@ -49,7 +49,7 @@ const playlistFetch = async () => {
 
 const songFetch = async (folder) => {
     currentFolder = folder;
-    let list = await fetch(`http://127.0.0.1:3000/Songs/${folder}/`);
+    let list = await fetch(`/Songs/${folder}/`);
     let response = await list.text();
     let element = document.createElement("div");
     element.innerHTML = response
