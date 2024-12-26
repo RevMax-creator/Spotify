@@ -28,7 +28,7 @@ body {
 
 .mid {
     gap: 8px;
-    margin-left: 150px;
+    margin-left: 140px;
 }
 
 .home {
@@ -41,7 +41,7 @@ body {
 
 .search {
     height: 48px;
-    width: 35vw;
+    width: 25vw;
     background-color: #1f1f1f;
     color: #b3b3b3;
     border-radius: 25px;
@@ -55,6 +55,7 @@ body {
 .search input {
     border: none;
     background-color: #1f1f1f;
+    width: 90%;
     color: #b3b3b3;
     font-weight: 500;
     font-size: 16px;
@@ -73,10 +74,15 @@ body {
     gap: 25px;
 }
 
+.container {
+    height: 85vh;
+    position: relative;
+}
+
 .left {
     margin-right: 4px;
     background-color: #121212;
-    width: 31vw;
+    width: 22vw;
     flex-direction: column;
     border-radius: 10px;
 }
@@ -114,7 +120,7 @@ body {
 }
 
 .left .library {
-    height: 45vh;
+    height: 75%;
     flex-direction: column;
     margin: 8px;
     border-radius: 10px;
@@ -126,7 +132,6 @@ body {
     background-color: #1f1f1f;
     gap: 12px;
     margin: 5px 0;
-    /* height: 60px; */
     justify-content: space-around;
     text-align: left;
 }
@@ -148,7 +153,10 @@ body {
 }
 
 .left .footer {
+    position: absolute;
+    bottom: 0;
     flex-direction: column;
+    width: 22%;
 }
 
 .left .footer ul {
@@ -177,8 +185,9 @@ body {
 .right {
     margin-left: 4px;
     background-color: #121212;
-    width: 69vw;
+    width: 78vw;
     border-radius: 10px;
+    padding: 10px;
 }
 
 .right .heading {
@@ -243,7 +252,7 @@ body {
     left: 102px;
     visibility: hidden;
     transform: translate(0px, 64px);
-    transition: transform 0.5s ease-in-out, visibilty 0s 0.4s linear,z-index 0.15s 0.2s ease-in;
+    transition: transform 0.5s ease-in-out, visibilty 0s 0.4s linear, z-index 0.15s 0.2s ease-in;
 }
 
 .right .playlists .card:hover .play {
@@ -253,17 +262,19 @@ body {
 }
 
 .playbar {
-    position: sticky;
-    bottom: 0;
+    position: fixed;
+    width: 98%;
+    bottom: 15;
+    left: 0;
     z-index: 50;
     background: black;
-    padding: 12px;
+    padding: 15px;
     justify-content: space-between;
 }
 
 .playbar .seekbar-time {
     position: absolute;
-    bottom: -1px;
+    bottom: -8px;
     gap: 8px;
     justify-content: space-between;
     width: 98%;
@@ -282,7 +293,8 @@ body {
 
 .playbar .songname {
     justify-self: left;
-    width: 300px;
+    width: 340px;
+    height: 32px;
     font-size: 14px;
     word-wrap: break-word;
 }
@@ -292,6 +304,156 @@ body {
     gap: 6px;
 }
 
-.playbar .volume input{
+.playbar .volume input {
     height: 4px;
+}
+
+
+@media screen and (max-width:1400px) {
+    .nav .mid {
+        margin-left: 150px;
+    }
+
+    .nav .mid .search {
+        width: 35vw;
+    }
+
+    .container {
+        height: 80vh;
+    }
+
+    .left {
+        width: 31.5vw;
+    }
+
+    .left .library {
+        height: 50%;
+    }
+
+    .left .footer {
+        position: unset;
+        bottom: unset;
+        width: 100%;
+    }
+
+    .right {
+        width: 68.5vw;
+        padding: unset;
+    }
+
+}
+
+@media screen and (max-width:920px) {
+
+    .right {
+        width: 98vw;
+        height: 100%;
+    }
+
+    .left {
+        background-color: #0f0f0f;
+        position: absolute;
+        z-index: 10;
+        width: 50vw;
+        height: 85vh;
+        transform: translateX(-500px);
+        transition: transform 1.5s 0.2ms ease-in-out;
+    }
+
+    .nav .mid .search {
+        width: auto;
+    }
+
+    .nav .mid .search input {
+        display: none;
+    }
+
+    .playbar .seekbar-time {
+        bottom: -1px;
+    }
+}
+
+
+@media screen and (max-width:650px) {
+    .nav .mid {
+        display: none;
+    }
+
+    .left {
+        width: 100%;
+    }
+
+    .right .playlists {
+        justify-content: space-evenly;
+    }
+
+}
+
+@media screen and (max-width:390px) {
+    .right .playlists {
+        flex-direction: column;
+        gap: 15px;
+        overflow-y: auto;
+    }
+
+    .left {
+        height: 100vh;
+        z-index: 55;
+    }
+
+    .right .playlists .card {
+        width: 90%;
+        height: auto;
+        padding: 15px;
+    }
+
+    .right .playlists .card>img {
+        width: 100%;
+    }
+
+    .right .playlists .card .premise {
+        font-size: x-large;
+        -webkit-line-clamp: 3;
+        padding-top: 25px;
+    }
+
+    .right .playlists .card .play {
+        bottom: 185px;
+        left: 245px;
+    }
+
+    .playbar {
+        flex-direction: column;
+        gap: 15px;
+        width: 92%;
+        height: 140px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+
+    .playbar .songname {
+        text-align: center;
+        height: 60px;
+    }
+}
+
+@media (max-aspect-ratio: 1/1) {
+
+    /* Your styles for screens where width < height */
+    .container {
+        height: 88vh;
+    }
+
+    .playbar {
+        width: 95vw;
+        bottom: 24px;
+        left: 0;
+        padding: 15px;
+    }
+
+    .left .library {
+        height: 75%;
+    }
+
 }

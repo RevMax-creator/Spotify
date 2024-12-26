@@ -135,7 +135,7 @@ html {
     background-color: black;
 }
 
-.play-btn{
+.play-btn {
     margin: 0 12px;
     height: 32px;
     width: 32px;
@@ -145,7 +145,11 @@ html {
     transition: all 1s ease-out;
 }
 
-.time{
+.smoothness {
+    transition: all 0.06ms;
+}
+
+.time {
     font-size: 12px;
     color: #b3b3b3;
 }
