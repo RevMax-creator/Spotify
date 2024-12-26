@@ -13,7 +13,7 @@ const playlistFetch = async () => {
     let array = Array.from(anchors)
     for (let index = 0; index < array.length; index++) {
         const e = array[index];
-        if (e.href.includes("/Songs")) {
+        if (e.href.includes("/Songs") && !e.href.includes(".htaccess")) {
             let folder = e.href.split("/").slice(-2)[0];
             // LoadMediaMetadata
             let data = await fetch(`/Songs/${folder}/info.json`);
@@ -39,7 +39,12 @@ const playlistFetch = async () => {
         e.addEventListener('click', async e => {
             // console.log('Fetching songs', e.currentTarget.dataset.folder);
             songList = await songFetch(e.currentTarget.dataset.folder);
-            await populatingLibrary(songList) // Running populating library so that on clicking the playlist card appropriate library can be loaded
+            await populatingLibrary(songList)
+            // Reseting seeker and svg
+            const seeker = document.querySelector(".seekbar .seeker")
+            currentSong.pause()
+            playSong(songList[0]) // Running populating library so that on clicking the playlist card appropriate library can be loaded
+            seeker.style.width = "0%"
             // console.log(songList, 'songList');
         });
     });
@@ -128,9 +133,10 @@ async function trackLength() {
 
 async function main() {
     playlistFetch()
-    let songList = await songFetch('NCS')
+    songList = await songFetch('NCS')
     await populatingLibrary(songList)
     playSong(songList[0], true);
+
     // Attaching event listener to controls
     document.querySelector(".play-btn").addEventListener('click', () => {
         if (currentSong.paused) {
@@ -144,6 +150,7 @@ async function main() {
 
     // previous.addEventListener()
     previous.addEventListener('click', () => {
+        console.log(songList)
         let index = songList.indexOf(currentSong.src);
         console.log(index, "index");
         if (index > 0 && index <= songList.length - 1) { // Check if the index is valid and within range
@@ -173,17 +180,28 @@ async function main() {
     volume.addEventListener('click', () => {
         currentSong.muted = !currentSong.muted;// Toggling the mute state
         volume.src = currentSong.muted ? "Assets/mute.svg" : "Assets/volume.svg";// Updating the volume icon based on the mute state
-        volumeRange.value = currentSong.muted ? 0:100// Changing the volumeRange
+        volumeRange.value = currentSong.muted ? 0 : 100// Changing the volumeRange
         // console.log("Muted state:", currentSong.muted);// Logging to the console to confirm the action
     });
 
     // Controlling volume
-    console.log(volumeRange, "range")
-    volumeRange.addEventListener('change',e=>{
+    // console.log(volumeRange, "range")
+    volumeRange.addEventListener('change', e => {
         console.log(e.target.value);
-        currentSong.volume = e.target.value/100
-        volume.src = (e.target.value==0) ? "Assets/mute.svg" : "Assets/volume.svg";
+        currentSong.volume = e.target.value / 100
+        volume.src = (e.target.value == 0) ? "Assets/mute.svg" : "Assets/volume.svg";
     })
+
+    // Adding event listener for hamburger
+    // console.log('width',window.innerWidth );
+    if (window.innerWidth < 921) {
+        let hidden = true
+        document.querySelector(".nav .logo").addEventListener('click', () => {
+            console.log("e", document.querySelector(".left").style, "Hamburger clicked" )
+            document.querySelector(".left").style.transform = (hidden)?"none":"translateX(-500px)";
+            hidden = !hidden
+        })
+    }
 
     //Seekbar event listener
     document.querySelector(".seekbar").addEventListener('click', (e) => {
