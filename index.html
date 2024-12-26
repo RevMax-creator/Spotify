@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify - Web Player: Music for everyone</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="CSS/utility.css">
+</head>
+
+<body>
+    <div class="header">
+        <div class="nav flex item-center">
+            <div class="logo invert"><img src="Assets/logo.svg" alt="Logo"></div>
+            <div class="mid flex">
+                <div class="home flex item-center"><img class="invert svg-width" src="Assets/home.svg" alt="Home"
+                        title="Home">
+                </div>
+                <div class="search flex item-center">
+                    <img class="svg-width" src="Assets/search.svg" alt="search">
+                    <input type="search" name="search" placeholder="What do you want to play?">|
+                    <img class="svg-width svg-color" src="Assets/browse.svg" alt="browse">
+                </div>
+            </div>
+            <div class="user-auth flex">
+                <button class="sign-btn ptr">Sign up</button>
+                <button class="login-btn w-7 ptr">Log in</button>
+            </div>
+        </div>
+    </div>
+    <div class="container flex">
+        <div class="left flex">
+            <div class="top flex item-center">
+                <div class="lib flex item-center ptr w-7"><img class="svg-width svg-color" src="Assets/library.svg"
+                        alt="library">Your Library</div>
+                <div class="more flex item-center">
+                    <img class="svg-width-16" src="Assets/more.svg" alt="more">
+                </div>
+            </div>
+            <div class="library flex">
+                <!-- // songs are getiing populated here by javascript -->
+            </div>
+            <div class="footer flex">
+                <ul class="flex">
+                    <li>Legal</li>
+                    <li>Saftey & Privacy Center</li>
+                    <li>Privacy Policy</li>
+                    <li>Cookies</li>
+                    <li>About Ads</li>
+                    <li>Accessibility</li>
+                </ul>
+                <a class="underline" href="#">Cookies</a>
+                <button class="translate-btn flex w-7"><img class="svg-width-16 invert" src="Assets/world.svg"
+                        alt="Globe">
+                    English</button>
+            </div>
+        </div>
+        <div class="right">
+            <div class="heading flex">
+                <span class="underline w-7">Popular Playlists</span>
+                <span class="underline w-7">Show all</span>
+            </div>
+            <div class="playlists flex">
+                <div data-folder="CS" class="card">
+                    <img src="https://i.scdn.co/image/ab67706f00000002d9b4d9b3682fbf8ed557469d" alt="cover">
+                    <div class="premise">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias nam, dolore ratione tempore
+                        magnam commodi magni ex expedita aliquid illo non officiis error voluptates, animi sit in
+                        laborum! Quasi ab tempore illum similique dicta error quidem eligendi blanditiis ratione
+                        deleniti mollitia cum est, aspernatur adipisci, accusantium dolore eos!
+                    </div>
+                    <div class="play flex item-center">
+                        <img class="svg-width" src="Assets/play.svg" alt="Play">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="playbar flex item-center">
+        <div class="seekbar-time flex item-center">
+            <div class="run-time time">00:00</div>
+            <div class="seekbar ptr">
+                <div class="seeker"></div>
+            </div>
+            <div class="current-time time">00:00</div>
+        </div>
+        <div class="songname ptr">
+            <!-- Name of the song -->
+        </div>
+        <div class="controls flex item-center">
+            <img id="previous" class="svg-width-16 invert ptr" src="Assets/previous.svg" alt="Previous">
+            <div class="play-btn flex item-center ptr"><img id="play" class="svg-width-16" src="Assets/play.svg"
+                    alt="Play"></div>
+            <img id="next" class="svg-width-16 invert ptr" src="Assets/next.svg" alt="Next">
+        </div>
+        <div class="volume flex item-center">
+            <img class="svg-width-16 invert ptr" src="Assets/volume.svg" alt="Volume">
+            <input class="ptr" type="range" name="volume" id="volumeRange" value="100">
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
